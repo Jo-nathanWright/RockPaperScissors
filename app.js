@@ -1,7 +1,7 @@
+let cpChoice = {}
 /**
  * Sets up the win and lose conditions for the players choices
  */
-
 let choices = {
     rock: {
         wins: 'scissors', //set condition to make it so if choice.win = cpChoice, then you win
@@ -17,25 +17,13 @@ let choices = {
     }
 }
 
-function drawButtons() {
-    let template = ''
-    for (let prop in choices) {
-        let choice = choices[prop]
-        template += `<button class="btn-dark mx-1" onclick="play('${prop}')">${prop}</button>`
-    }
-    document.getElementById('buttons').innerHTML = template
-}
-
-function play(playerChoice) {
-    document.getElementById('choice').innerHTML = `You choosed ${playerChoice}`
-    let choice = choices[playerChoice]
-
-    //#region The Computors Choice
-    let random = Object.keys(choices)
-    let cpc = Math.floor(Math.random() * (random.length))
-    let cpChoice = ''
-
-    switch (cpc) {
+/**
+ * Randomizes the computors move.
+ */
+function computorsPlay() {
+    let options = Object.keys(choices)
+    let computorChoice = Math.floor(Math.random() * (options.length))
+    switch (computorChoice) {
         case 0:
             cpChoice = 'rock'
             break;
@@ -46,10 +34,31 @@ function play(playerChoice) {
             cpChoice = 'scissors'
             break;
     }
-    document.getElementById('cpChoice').innerHTML = `The Computor choose ${cpChoice}`
-    console.log("The computor choose ", cpChoice)
-    //#endregion
+}
 
+/**
+ * Sets up the buttons and their base functionality in HTML
+ */
+function drawButtons() {
+    let template = ''
+    for (let prop in choices) {
+        let choice = choices[prop]
+        template += `<button class="btn btn-outline-danger mx-1" onclick="play('${prop}')">${prop}</button>`
+    }
+    document.getElementById('buttons').innerHTML = template
+}
+
+/**
+ * Sets up the player and the players win/lose conditions
+ * @param {string} playerChoice 
+ */
+function play(playerChoice) {
+    computorsPlay()
+    document.getElementById('choice').innerHTML = `You choosed ${playerChoice}`
+    document.getElementById('cpChoice').innerHTML = `The Computor choose ${cpChoice}`
+
+    //#region Does the player win?
+    let choice = choices[playerChoice]
     switch (cpChoice) {
         case playerChoice:
             document.getElementById('result').innerHTML = `You Drawed`
@@ -64,6 +73,7 @@ function play(playerChoice) {
             console.log('You LOST')
             break;
     }
+    //#endregion
 
     //#region Second Rendition
     // if (cpChoice == playerChoice) {
