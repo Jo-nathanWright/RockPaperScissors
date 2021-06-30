@@ -17,14 +17,12 @@
     </header>
     <main class="container">
         <div class="row py-2">
-            <div class="col-12 text-center">
-                <button class="btn-dark" onclick="play('rock')">Rock</button>
-                <button class="btn-dark" onclick="play('paper')">Paper</button>
-                <button class="btn-dark" onclick="play('scissors')">Scissors</button>
+            <div class="col-12 text-center" id="buttons"></div>
+            <div class="col-12 my-3 text-center" id="choice">
+                <!-- You choosed ____! -->
             </div>
-            <div class="col-12 my-3 text-center">
-                You choosed ____!
-            </div>
+            <div class="col-12 my-3 text-center" id="cpChoice"></div>
+            <div class="col-12 my-3 text-center" id="result"></div>
         </div>
     </main>
     <script src="app.js"></script>
