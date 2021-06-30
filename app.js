@@ -1,19 +1,33 @@
 let cpChoice = {}
+let cpIcon = {}
 /**
  * Sets up the win and lose conditions for the players choices
  */
 let choices = {
     rock: {
-        wins: 'scissors', //set condition to make it so if choice.win = cpChoice, then you win
-        loses: 'paper' //set condition to make it so if choice.lose = cpChoice, then you lose
+        wins: ['scissors', 'lizard'], //set condition to make it so if choice.win = cpChoice, then you win
+        loses: ['paper', 'spock'], //set condition to make it so if choice.lose = cpChoice, then you lose
+        icon: 'mdi mdi-circle'
     },
     paper: {
-        wins: 'rock',
-        loses: 'scissors'
+        wins: ['rock', 'spock'],
+        loses: ['scissors', 'lizard'],
+        icon: 'mdi mdi-file-outline'
     },
     scissors: {
-        wins: 'paper',
-        loses: 'rock'
+        wins: ['paper', 'lizard'],
+        loses: ['rock', 'spock'],
+        icon: 'mdi mdi-content-cut'
+    },
+    lizard: {
+        wins: ['spock', 'paper'],
+        loses: ['rock', 'scissors'],
+        icon: 'mdi mdi-google-downasaur'
+    },
+    spock: {
+        wins: ['scissors', 'rock'],
+        loses: ['paper', 'lizard'],
+        icon: 'mdi mdi-hand-right'
     }
 }
 
@@ -26,12 +40,23 @@ function computorsPlay() {
     switch (computorChoice) {
         case 0:
             cpChoice = 'rock'
+            cpIcon = 'mdi mdi-circle'
             break;
         case 1:
             cpChoice = 'paper'
+            cpIcon = 'mdi mdi-file-outline'
             break;
         case 2:
             cpChoice = 'scissors'
+            cpIcon = 'mdi mdi-content-cut'
+            break;
+        case 3:
+            cpChoice = 'spock'
+            cpIcon = 'mdi mdi-hand-right'
+            break;
+        case 4:
+            cpChoice = 'snake'
+            cpIcon = 'mdi mdi-google-downasaur'
             break;
     }
 }
@@ -53,12 +78,17 @@ function drawButtons() {
  * @param {string} playerChoice 
  */
 function play(playerChoice) {
+    let choice = choices[playerChoice]
     computorsPlay()
-    document.getElementById('choice').innerHTML = `You choosed ${playerChoice}`
-    document.getElementById('cpChoice').innerHTML = `The Computor choose ${cpChoice}`
+    document.getElementById('choice').innerHTML = `<p>You choosed ${playerChoice} <i class="${choice.icon}"></i></p>`
+    document.getElementById('cpChoice').innerHTML = `<p>The Computor choose ${cpChoice} <i class="${cpIcon}"></i></p>`
 
     //#region Does the player win?
-    let choice = choices[playerChoice]
+    //NOTE use find to search through an array to see if the computors choice is in your choice!
+    //let victory = choice.find(Element => Element = cpChoice)
+    //console.log('Testing', victory)
+
+
     switch (cpChoice) {
         case playerChoice:
             document.getElementById('result').innerHTML = `You Drawed`
@@ -68,7 +98,7 @@ function play(playerChoice) {
             document.getElementById('result').innerHTML = `You Won`
             console.log('You WIN')
             break;
-        case choice.loses:
+        default:
             document.getElementById('result').innerHTML = `You Lost`
             console.log('You LOST')
             break;
