@@ -136,4 +136,12 @@ function play(playerChoice) {
     //#endregion
 }
 
+/**
+ * Shows the guide to the moves the player can do
+ */
+function drawGuide() {
+    document.getElementById("Guide").classList.remove("hidden");
+    //Change the inner.HTML to show and hide this image. Don't use css
+}
+
 drawButtons();
