@@ -67,7 +67,7 @@ function computorsPlay() {
             break;
         case 6:
             cpChoice = 'devil'
-            cpIcon = 'mid mid-emoticon-devil-outline'
+            cpIcon = 'mdi mdi-emoticon-devil-outline'
             break;
     }
 }
