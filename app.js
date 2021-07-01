@@ -140,7 +140,13 @@ function play(playerChoice) {
  * Shows the guide to the moves the player can do
  */
 function drawGuide() {
-    document.getElementById("Guide").classList.remove("hidden");
+    let template = ''
+    if (document.getElementById('Guide').innerHTML == `<img class="w-50" src="assets/Guide.png">`) {
+        template = ''
+    } else {
+        template = `<img class="w-50" src="assets/Guide.png">`
+    }
+    document.getElementById('Guide').innerHTML = template
     //Change the inner.HTML to show and hide this image. Don't use css
 }
 
