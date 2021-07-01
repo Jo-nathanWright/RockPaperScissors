@@ -5,32 +5,24 @@ let cpIcon = {}
  */
 let choices = {
     rock: {
-        wins: ['scissors', 'lizard', 'devil'], //set condition to make it so if choice.win = cpChoice, then you win
+        wins: ['scissors', 'lizard',], //set condition to make it so if choice.win = cpChoice, then you win
         icon: 'mdi mdi-circle' //sets icon for the choice the player makes
     },
     paper: {
-        wins: ['rock', 'spock', 'love'],
+        wins: ['rock', 'spock'],
         icon: 'mdi mdi-file-outline'
     },
     scissors: {
-        wins: ['paper', 'lizard', 'love'],
+        wins: ['paper', 'lizard'],
         icon: 'mdi mdi-content-cut'
     },
     lizard: {
-        wins: ['spock', 'paper', 'love'],
+        wins: ['spock', 'paper'],
         icon: 'mdi mdi-google-downasaur'
     },
     spock: {
-        wins: ['scissors', 'rock', 'devil'],
+        wins: ['scissors', 'rock'],
         icon: 'mdi mdi-hand-right'
-    },
-    love: {
-        wins: ['rock', 'spock', 'devil'],
-        icon: 'mdi mdi-heart'
-    },
-    devil: {
-        wins: ['paper', 'scissors', 'lizard'],
-        icon: 'mdi mdi-emoticon-devil-outline'
     }
 }
 
@@ -61,14 +53,6 @@ function computorsPlay() {
             cpChoice = 'lizard'
             cpIcon = 'mdi mdi-google-downasaur'
             break;
-        case 5:
-            cpChoice = 'love'
-            cpIcon = 'mdi mdi-heart'
-            break;
-        case 6:
-            cpChoice = 'devil'
-            cpIcon = 'mdi mdi-emoticon-devil-outline'
-            break;
     }
 }
 
@@ -77,9 +61,9 @@ function computorsPlay() {
  */
 function drawButtons() {
     let template = ''
-    for (let prop in choices) {
-        let choice = choices[prop]
-        template += `<button class="btn btn-outline-danger mx-1" onclick="play('${prop}')">${prop}</button>`
+    for (let key in choices) {
+        let choice = choices[key]
+        template += `<button class="btn btn-outline-danger mx-1" onclick="play('${key}')">${key}</button>`
     }
     document.getElementById('buttons').innerHTML = template
 }
