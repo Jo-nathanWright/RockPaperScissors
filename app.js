@@ -5,24 +5,32 @@ let cpIcon = {}
  */
 let choices = {
     rock: {
-        wins: ['scissors', 'lizard'], //set condition to make it so if choice.win = cpChoice, then you win
+        wins: ['scissors', 'lizard', 'devil'], //set condition to make it so if choice.win = cpChoice, then you win
         icon: 'mdi mdi-circle' //sets icon for the choice the player makes
     },
     paper: {
-        wins: ['rock', 'spock'],
+        wins: ['rock', 'spock', 'love'],
         icon: 'mdi mdi-file-outline'
     },
     scissors: {
-        wins: ['paper', 'lizard'],
+        wins: ['paper', 'lizard', 'love'],
         icon: 'mdi mdi-content-cut'
     },
     lizard: {
-        wins: ['spock', 'paper'],
+        wins: ['spock', 'paper', 'love'],
         icon: 'mdi mdi-google-downasaur'
     },
     spock: {
-        wins: ['scissors', 'rock'],
+        wins: ['scissors', 'rock', 'devil'],
         icon: 'mdi mdi-hand-right'
+    },
+    love: {
+        wins: ['rock', 'spock', 'devil'],
+        icon: 'mdi mdi-heart'
+    },
+    devil: {
+        wins: ['paper', 'scissors', 'lizard'],
+        icon: 'mdi mdi-emoticon-devil-outline'
     }
 }
 
@@ -52,6 +60,14 @@ function computorsPlay() {
         case 4:
             cpChoice = 'lizard'
             cpIcon = 'mdi mdi-google-downasaur'
+            break;
+        case 5:
+            cpChoice = 'love'
+            cpIcon = 'mdi mdi-heart'
+            break;
+        case 6:
+            cpChoice = 'devil'
+            cpIcon = 'mid mid-emoticon-devil-outline'
             break;
     }
 }
