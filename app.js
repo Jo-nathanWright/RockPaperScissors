@@ -1,32 +1,27 @@
 let cpChoice = {}
 let cpIcon = {}
 /**
- * Sets up the win and lose conditions for the players choices
+ * Sets up the win conditions for the players choices as well as the custom icon for their move
  */
 let choices = {
     rock: {
         wins: ['scissors', 'lizard'], //set condition to make it so if choice.win = cpChoice, then you win
-        loses: ['paper', 'spock'], //set condition to make it so if choice.lose = cpChoice, then you lose
-        icon: 'mdi mdi-circle'
+        icon: 'mdi mdi-circle' //sets icon for the choice the player makes
     },
     paper: {
         wins: ['rock', 'spock'],
-        loses: ['scissors', 'lizard'],
         icon: 'mdi mdi-file-outline'
     },
     scissors: {
         wins: ['paper', 'lizard'],
-        loses: ['rock', 'spock'],
         icon: 'mdi mdi-content-cut'
     },
     lizard: {
         wins: ['spock', 'paper'],
-        loses: ['rock', 'scissors'],
         icon: 'mdi mdi-google-downasaur'
     },
     spock: {
         wins: ['scissors', 'rock'],
-        loses: ['paper', 'lizard'],
         icon: 'mdi mdi-hand-right'
     }
 }
@@ -55,7 +50,7 @@ function computorsPlay() {
             cpIcon = 'mdi mdi-hand-right'
             break;
         case 4:
-            cpChoice = 'snake'
+            cpChoice = 'lizard'
             cpIcon = 'mdi mdi-google-downasaur'
             break;
     }
@@ -83,18 +78,19 @@ function play(playerChoice) {
     document.getElementById('choice').innerHTML = `<p>You choosed ${playerChoice} <i class="${choice.icon}"></i></p>`
     document.getElementById('cpChoice').innerHTML = `<p>The Computor choose ${cpChoice} <i class="${cpIcon}"></i></p>`
 
-    //#region Does the player win?
-    //NOTE use find to search through an array to see if the computors choice is in your choice!
-    //let victory = choice.find(Element => Element = cpChoice)
-    //console.log('Testing', victory)
+    //#region Compairs the Computors choice to the values of the players win conditions
+    console.log('Will win against ', choice.wins)
+    console.log('The Computer Choose - ', cpChoice)
+    let ifFound = choice.wins.find(Element => Element == cpChoice)
+    //#endregion
 
-
+    //#region Sets up the logic for if you win or not
     switch (cpChoice) {
         case playerChoice:
             document.getElementById('result').innerHTML = `You Drawed`
             console.log('You Drawed')
             break;
-        case choice.wins:
+        case ifFound:
             document.getElementById('result').innerHTML = `You Won`
             console.log('You WIN')
             break;
